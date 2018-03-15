@@ -1,0 +1,138 @@
+<ion-header>
+
+  <ion-navbar>
+    <button ion-button menuToggle>
+      <ion-icon name="menu"></ion-icon>
+    </button>
+    <ion-title>Nuevo Habitante</ion-title>
+  </ion-navbar>
+</ion-header>
+
+<ion-content>
+  <div padding>
+<ion-segment [(ngModel)]="habitante">
+  <ion-segment-button value="personales">
+    Datos personales
+  </ion-segment-button>
+  <ion-segment-button value="familiares">
+    Familia
+  </ion-segment-button>
+  <ion-segment-button value="escolaridad">
+    Escolaridad y Empleo
+  </ion-segment-button>
+  <ion-segment-button value="salud">
+    Salud
+  </ion-segment-button>
+  <ion-segment-button value="registro">
+    Registro
+  </ion-segment-button>
+</ion-segment>
+  </div>
+  <div [ngSwitch]="habitante">
+    <ion-list *ngSwitchCase="'personales'">
+        <ion-item>
+          <ion-label stacked>Nombres</ion-label>
+          <ion-input [(ngModel)]="item.nombres" name="nombres"></ion-input>
+        </ion-item>
+        <ion-item>
+          <ion-label stacked>Apellido Paterno</ion-label>
+          <ion-input [(ngModel)]="item.apellidop" name="apellidop"></ion-input>
+        </ion-item>
+        <ion-item>
+          <ion-label stacked>Apellido Materno</ion-label>
+          <ion-input [(ngModel)]="item.apellidom" name="apellidom"></ion-input>
+        </ion-item>
+        <ion-item>
+          <ion-label stacked>  <ion-icon name="{{item.iconorut}}" color="{{item.colorrut}}"></ion-icon>Rut</ion-label>
+          <ion-input [(ngModel)]="item.rut" name="rut" (blur)='verificaRut($event)'></ion-input>
+        </ion-item>
+
+        <ion-item>
+          <ion-label stacked>Nacionalidad</ion-label>
+          <ion-input [(ngModel)]="item.nacionalidad" name="nacionalidad"></ion-input>
+        </ion-item>
+        <ion-item>
+          <ion-label stacked>Fecha Nacimiento</ion-label>
+          <ion-datetime [(ngModel)]="item.fechanacimiento" name="fechanacimiento" displayFormat="MM/DD/YYYY" [(ngModel)]="myDate"></ion-datetime>
+        </ion-item>
+
+
+
+        <div padding>
+          <button block icon-start ion-button color="primary" (click)="step1()"><ion-icon name="md-checkmark" showWhen="core,android,windows"></ion-icon>Continuar</button>
+        </div>
+      </ion-list>
+  </div>
+  <div [ngSwitch]="habitante">
+    <ion-list *ngSwitchCase="'familiares'">
+      <ion-item>
+        <ion-label stacked>Esposa / Conyuge</ion-label>
+        <ion-input [(ngModel)]="item.conyuge" name="conyuge"></ion-input>
+      </ion-item>
+      <ion-item>
+        <ion-label stacked>Hijos</ion-label>
+        <ion-input [(ngModel)]="item.hijos" name="hijos"></ion-input>
+      </ion-item>
+      <ion-item>
+        <ion-label stacked>Padre</ion-label>
+        <ion-input [(ngModel)]="item.padre" name="padre"></ion-input>
+      </ion-item>
+      <ion-item>
+        <ion-label stacked>Madre</ion-label>
+        <ion-input [(ngModel)]="item.madre" name="madre"></ion-input>
+      </ion-item>
+      <div padding>
+        <button block icon-start ion-button color="primary" (click)="step2()"><ion-icon name="md-checkmark" showWhen="core,android,windows"></ion-icon>Continuar</button>
+      </div>
+    </ion-list>
+  </div>
+  <div [ngSwitch]="habitante">
+<ion-list *ngSwitchCase="'escolaridad'">
+  <ion-item>
+    <ion-label stacked>Escolaridad</ion-label>
+    <ion-select [(ngModel)]="item.escolaridad" name="escolaridad">
+      <ion-option value="basicaimcompleta">Básica Incompleta</ion-option>
+      <ion-option value="mediaimcompleta">Media Imcompleta</ion-option>
+        <ion-option value="mediacompleta">Media Completa</ion-option>
+          <ion-option value="universitariaincompleta">Universitaria Imcompleta</ion-option>
+            <ion-option value="mediacompleta">Universitaria Completa</ion-option>
+    </ion-select>
+ </ion-item>
+ <ion-item>
+   <ion-label stacked>Empleo</ion-label>
+   <ion-toggle [(ngModel)]="item.empleo" name="empleo"></ion-toggle>
+ </ion-item>
+ <ion-item>
+   <ion-label stacked>Escolaridad</ion-label>
+   <ion-select [(ngModel)]="item.tipoempleo" name="tipoempleo">
+     <ion-option value="independiente">Independiente</ion-option>
+     <ion-option value="dependiente">Dependiente</ion-option>
+   </ion-select>
+</ion-item>
+<ion-item>
+  <ion-label stacked>Ingreso</ion-label>
+  <ion-input [(ngModel)]="item.ingreso" name="ingreso"></ion-input>
+</ion-item>
+<div padding>
+<button block icon-start ion-button color="primary" (click)="done()"><ion-icon name="md-checkmark" showWhen="core,android,windows"></ion-icon>Guardar</button>
+</div>
+</ion-list>
+  </div>
+  <div [ngSwitch]="habitante">
+    <ion-list *ngSwitchCase="'registro'">
+      <ion-item>
+        <ion-textarea [(ngModel)]="item.nregistro" placeholder="Enter a description"></ion-textarea>
+      </ion-item>
+      <ion-item-sliding *ngFor="let c of registros" (click)="detalleRegistro(c,item.rut)">
+        <button ion-item>
+          <h3>{{c.registro}}</h3>
+
+        </button>
+      </ion-item-sliding>
+      <div padding>
+      <button block icon-start ion-button color="primary" (click)="guardaRegistro(item.rut)"><ion-icon name="md-checkmark" showWhen="core,android,windows"></ion-icon>Guardar</button>
+      </div>
+    </ion-list>
+  </div>
+
+</ion-content>

@@ -1,6 +1,6 @@
 {
   "name": "muniERP",
-  "app_id": "",
+  "app_id": "8dceb631",
   "type": "ionic-angular",
   "integrations": {
     "cordova": {}

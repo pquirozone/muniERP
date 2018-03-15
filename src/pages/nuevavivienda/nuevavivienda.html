@@ -1,0 +1,143 @@
+<ion-header>
+
+  <ion-navbar>
+    <button ion-button menuToggle>
+      <ion-icon name="menu"></ion-icon>
+    </button>
+    <ion-title>Nueva Vivienda</ion-title>
+  </ion-navbar>
+</ion-header>
+
+
+<ion-content>
+  <div padding>
+    <ion-segment [(ngModel)]="vivienda">
+      <ion-segment-button value="direccion">
+        Dirección
+      </ion-segment-button>
+      <ion-segment-button value="legales">
+        Antecedentes legales
+      </ion-segment-button>
+      <ion-segment-button value="construccion">
+        Construcción y Servicios
+      </ion-segment-button>
+      <ion-segment-button value="habitantes">
+        Habitantes
+      </ion-segment-button>
+      </ion-segment>
+  </div>
+  <div [ngSwitch]="vivienda">
+<ion-list *ngSwitchCase="'direccion'">
+  <ion-item>
+    <ion-label stacked>Paseje/Calle/Avenida</ion-label>
+    <ion-input [(ngModel)]="item.calle" name="calle"></ion-input>
+  </ion-item>
+  <ion-item>
+    <ion-label stacked>Numero</ion-label>
+    <ion-input [(ngModel)]="item.numero" name="numero"></ion-input>
+  </ion-item>
+  <ion-item>
+    <ion-label stacked>Casa / Dpto</ion-label>
+    <ion-input [(ngModel)]="item.dpto" name="dpto"></ion-input>
+  </ion-item>
+  <ion-item>
+    <ion-label stacked>Sector</ion-label>
+    <ion-select [(ngModel)]="item.sector" name="sector">
+      <ion-option value="Nor Oeste">Nor Oeste</ion-option>
+      <ion-option value="Nor Este">Nor Este</ion-option>
+      <ion-option value="Centro Oeste">Centro Oeste</ion-option>
+      <ion-option value="Centro Este">Centro Este</ion-option>
+      <ion-option value="Sur Oeste">Sur Oeste</ion-option>
+      <ion-option value="Sur Este">Sur Este</ion-option>
+    </ion-select>
+  </ion-item>
+  <div padding>
+    <button block icon-start ion-button color="primary" (click)="step1  ()"><ion-icon name="md-checkmark" showWhen="core,android,windows"></ion-icon>Continuar</button>
+  </div>
+</ion-list>
+  </div>
+  <div [ngSwitch]="vivienda">
+    <ion-list *ngSwitchCase="'legales'">
+      <ion-item>
+        <ion-label stacked>Propietario</ion-label>
+        <ion-input [(ngModel)]="item.propietario" name="propietario"></ion-input>
+      </ion-item>
+      <ion-item>
+        <ion-label stacked>Año de Construcción</ion-label>
+        <ion-input [(ngModel)]="item.year" name="year"></ion-input>
+      </ion-item>
+      <ion-item>
+        <ion-label stacked>Avaluo Fiscal</ion-label>
+        <ion-input [(ngModel)]="item.avaluo" name="avaluo"></ion-input>
+      </ion-item>
+      <ion-item>
+        <ion-label stacked>Avaluo Comercial</ion-label>
+        <ion-input [(ngModel)]="item.comercial" name="comercial"></ion-input>
+      </ion-item>
+      <ion-item>
+        <ion-label stacked>Situación Financiera</ion-label>
+        <ion-select [(ngModel)]="item.situacion" name="situacion">
+          <ion-option value="pagada">Pagada</ion-option>
+          <ion-option value="credito">Crédito Vigente</ion-option>
+          <ion-option value="litigio">Litigio</ion-option>
+        </ion-select>
+     </ion-item>
+     <div padding>
+       <button block icon-start ion-button color="primary" (click)="step2()"><ion-icon name="md-checkmark" showWhen="core,android,windows"></ion-icon>Continuar</button>
+     </div>
+    </ion-list>
+  </div>
+  <div [ngSwitch]="vivienda">
+    <ion-list *ngSwitchCase="'construccion'">
+      <ion-item>
+        <ion-label stacked>Construcción</ion-label>
+        <ion-select [(ngModel)]="item.material" name="material">
+          <ion-option value="solida">Solida</ion-option>
+          <ion-option value="ligera">ligera</ion-option>
+          <ion-option value="mixta">mixta</ion-option>
+        </ion-select>
+     </ion-item>
+     <ion-item>
+       <ion-label stacked>Dimensiones</ion-label>
+       <ion-input [(ngModel)]="item.dimensiones" name="dimensiones"></ion-input>
+     </ion-item>
+     <ion-item>
+       <ion-label stacked>Pisos</ion-label>
+       <ion-input [(ngModel)]="item.pisos" name="pisos"></ion-input>
+     </ion-item>
+     <ion-item>
+       <ion-label stacked>Habitaciones</ion-label>
+       <ion-input [(ngModel)]="item.habitaciones" name="habitaciones"></ion-input>
+     </ion-item>
+     <ion-item>
+       <ion-label stacked>Baños</ion-label>
+       <ion-input [(ngModel)]="item.banos" name="banos"></ion-input>
+     </ion-item>
+     <ion-item>
+       <ion-label stacked>Agua Potable</ion-label>
+       <ion-toggle [(ngModel)]="item.agua" name="agua"></ion-toggle>
+     </ion-item>
+     <ion-item>
+       <ion-label stacked>Electricidad</ion-label>
+       <ion-toggle [(ngModel)]="item.electricidad" name="electricidad"></ion-toggle>
+     </ion-item>
+     <ion-item>
+       <ion-label stacked>Gas Cañería</ion-label>
+       <ion-toggle [(ngModel)]="item.gas" name="gas"></ion-toggle>
+     </ion-item>
+     <div padding>
+       <button block icon-start ion-button color="primary" (click)="step3()"><ion-icon name="md-checkmark" showWhen="core,android,windows"></ion-icon>Continuar</button>
+     </div>
+    </ion-list>
+  </div>
+  <div [ngSwitch]="vivienda">
+    <ion-list *ngSwitchCase="'habitantes'">
+      <ion-item>
+          <ion-searchbar></ion-searchbar>
+      </ion-item>
+      <div padding>
+        <button block icon-start ion-button color="primary" (click)="done()"><ion-icon name="md-checkmark" showWhen="core,android,windows"></ion-icon>Continuar</button>
+      </div>
+    </ion-list>
+  </div>
+</ion-content>

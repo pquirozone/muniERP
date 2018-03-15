@@ -1,0 +1,28 @@
+<ion-content padding>
+  <div text-center class="logo">
+    <img src="assets/ionic-aws-logo.png" />
+  </div>
+  <form [formGroup]="loginForm" (submit)="loginUser()" novalidate>
+    <ion-list>
+
+      <ion-item>
+        <ion-label floating>Username</ion-label>
+        <ion-input formControlName="email" type="email" autocorrect="off" autocapitalize="none" name="username" placeholder="correo electronico"  ></ion-input>
+      </ion-item>
+
+      <ion-item>
+        <ion-label floating>Password</ion-label>
+        <ion-input formControlName="password" type="password" name="password" placeholder="Password"></ion-input>
+      </ion-item>
+
+      <div padding>
+        <button ion-button type="submit" color="primary">LOGIN</button>
+      </div>
+
+      <div padding text-center>
+        <p>No tienes aún una cuenta?<a (click)="goToSignup()">Regístrate aquí</a></p>
+      </div>
+
+    </ion-list>
+  </form>
+</ion-content>
